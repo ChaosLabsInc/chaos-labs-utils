@@ -1,18 +1,20 @@
 # Chaos Labs Utils
 
-This repository contains tests framework to test https://github.com/bgd-labs/aave-proposals
+This package contains a contract which allow you to extand testing coverage within the aave protocol in foundry.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These helpers allow you to fetch the health factor of the borrowers and validate the difference before and after the payload was executed. 
+
 
 ### Prerequisites
 
+* Python - please follow the [instructions](https://packaging.python.org/en/latest/tutorials/installing-packages/) to install Python.
 
-* python
-```
-Give examples
-```
+    install requirements:
+    ```
+    pip install -r requirements.txt
+    ```
 
 ## Usage with foundry
 With Foundry installed and being in a Git repository:
@@ -23,7 +25,7 @@ forge install https://github.com/ChaosLabsInc/chaos-labs-utils
 
 ## Usage with payload test contract
 
-### Usage example
+### Usage example 
 YourPayloadTest.Sol:
 ```
     import {SanityChecks} from 'chaos-labs-utils/SanityChecks.sol';
@@ -55,14 +57,14 @@ YourPayloadTest.Sol:
 
 ```_testBorrowrsHealth()```
 
-this function get all borrowers health for the given protocol status.
+this function return all borrowers health for the given protocol status.
 
 ```validateBorrowersHealth(healthsBefore, healthsAfter, changeTolerancePercentage)```
 
 this function compares the health of the borrowed before and after the execution for a given tolerance percentage (1_00 present +-1%, for zero tolerance pass 0)
 
 ## Usage MakeFile
-add to MakeFile:
+Recommended practice add to MakeFile:
 ```
 test-name :; python lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_number} && forge test -vvv --match-contract YourPayloadTest
 ```
@@ -72,12 +74,18 @@ example for running test and fetch borrowers from the latest block update on the
 test-name :; python lib/chaos-labs-utils/scripts/fetch-borrowers.py ethereum && forge test -vvv --match-contract AaveEthV3PayloadTest
 ```
 
-lib/chaos-labs-utils/scripts/fetch-borrowers.py script argumansts:
+Another option - running the python script lib/chaos-labs-utils/scripts/fetch-borrowers.py before running the test:
+```
+python lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_number}
+```
+
+### Script argumansts
 * chain_name - The name of the chain from this supported list: ```[polygon, avalanche, arbitrum, optimism, ethereum]```
 * block_number - this is an optional argument, if not pass the script withh fetch the borrowers from the latest block in the graph.
-
 
 ## Acknowledgments
 
 ### FAQ
+
+
 
