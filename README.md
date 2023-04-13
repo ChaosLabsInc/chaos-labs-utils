@@ -92,8 +92,7 @@ python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_numb
 
 **Q: I got error while running the payload test**
 
-**A:** This can happen because '_testBorrowrsHealth' is trying to fetch data from the node for multiple borrowers - please rerun the test.
-
+**A:**  First iteration can fail on latency to archive node to fetch all the balances for the test, rerunning will help.
 
 
 **Q: I got requier message "Health factor changed more than the set tolerance percentage." but payload didn't changed collateral parameters**
