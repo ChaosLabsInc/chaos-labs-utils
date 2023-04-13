@@ -17,7 +17,7 @@ in the solidity test contract:
     import {SanityChecks} from 'chaos-labs-utils/SanityChecks.sol';
     ...
 
-    contract XXX is SanityChecks {
+    contract XXXTest is SanityChecks {
 
     uint256[] memory healthsBefore = _testBorrowrsHealth(AaveV3{chain}.POOL);
 
