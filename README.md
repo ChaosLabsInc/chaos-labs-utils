@@ -16,6 +16,7 @@ These helpers allow you to fetch the health factor of the borrowers and validate
         pip install -r requirements.txt
         ```
 
+python3 -m pip install requests
 ## Usage with foundry
 With Foundry installed and being in a Git repository:
 
@@ -85,7 +86,7 @@ python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_numb
 
 ## FAQs
 
-**Q: I got timeout error while running the python scrip**
+**Q: I got timeout error while running the python script ```requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.thegraph.com', port=443): Read timed out.```**
 
 **A:** This can happen for many reasons; please try to rerun the script.
 
@@ -96,6 +97,6 @@ python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_numb
 
 
 
-**Q: I got requier message "Health factor changed more than the set tolerance percentage." but didnt changed collateral parameters**
+**Q: I got requier message "Health factor changed more than the set tolerance percentage." but payload didn't changed collateral parameters**
 
-**A:** This should not happen, and we advise you to check if the payload is correct. 
+**A:** This should not happen, we advise you to check if the payload is correct. 
