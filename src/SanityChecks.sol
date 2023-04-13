@@ -15,7 +15,7 @@ contract SanityChecks is Test {
         address[] memory borrowers = new Constants().getBorrowers();
         uint256[] memory healthFactorArr = new uint256[](borrowers.length);
 
-        console.log("start test number of borrowers: ", borrowers.length);
+        console.log("Start test number of borrowers: ", borrowers.length);
         for (uint i = 0; i < borrowers.length; i++) {
             (, , , , , uint256 healthFactor) = pool.getUserAccountData(
                 borrowers[i]

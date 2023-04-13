@@ -23,7 +23,7 @@ AAVE_GRAPH_URLS = {
     "ethereum": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3",
 }
 
-print(f"start fetching borrowers from CHAIN {CHAIN}")
+print(f"Start fetching borrowers from CHAIN {CHAIN}")
 
 addresses = []
 
@@ -77,7 +77,6 @@ if response.status_code == 200:
     """
         f.write(template)
 
-    os.system("npx prettier --write src/*")
     print(f"Update borrowers in: {BORROWERS_PATH}")
 
 else:
