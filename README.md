@@ -1,3 +1,5 @@
+# Intro
+
 # How to use 
 
 ## Python script
@@ -11,25 +13,7 @@ run: ```py3 fetch-borrowers.py {chain_name} {block_number?}```
 
 ## Solidiy test contract
 
-in the solidity test contract:
-
-```
-    import {SanityChecks} from 'chaos-labs-utils/SanityChecks.sol';
-    ...
-
-    contract XXX is SanityChecks {
-
-    uint256[] memory healthsBefore = _testBorrowrsHealth(AaveV3{chain}.POOL);
-
-    // 2. execute payload
-    _executePayload(address(proposalPayload));
-
-    uint256[] memory healthsAfter = _testBorrowrsHealth(AaveV3{chain}.POOL);
-
-    validateBorrowersHealth(healthsBefore, healthsAfter, 1_00);
-
-}
-```
+### Functions definition
 
 ```_testBorrowrsHealth()```
 
@@ -38,3 +22,28 @@ this function get all borrowers health for the given protocol status.
 ```validateBorrowersHealth(healthsBefore, healthsAfter, changeTolerancePercentage)```
 
 this function compares the health of the borrowed before and after the execution for a given tolerance percentage (1_00 present +-1%, for zero tolerance pass 0)
+
+
+### Usage example
+```
+    import {SanityChecks} from 'chaos-labs-utils/SanityChecks.sol';
+    ...
+
+    contract XXXTest is SanityChecks {
+
+      function testPayload() public {
+        uint256[] memory healthsBefore = _testBorrowrsHealth(AaveV3{chain}.POOL);
+
+        // 2. execute payload
+        _executePayload(address(proposalPayload));
+
+        uint256[] memory healthsAfter = _testBorrowrsHealth(AaveV3{chain}.POOL);
+
+        validateBorrowersHealth(healthsBefore, healthsAfter, 1_00);
+    }
+}
+```
+
+## MakeFile
+add to MakeFile:
+test-name :; python lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} && forge test -vvv --match-contract XXX_Test
