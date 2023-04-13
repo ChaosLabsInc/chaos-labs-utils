@@ -30,7 +30,7 @@ addresses = []
 aave_top_account_per_reserve = f"""  {{pools{{
 reserves{{
   symbol
-  userReserves(first:10, orderBy: currentATokenBalance, orderDirection: desc, {FETCH_BY_BLOCK_NUMBER}){{
+  userReserves(first:50, orderBy: currentATokenBalance, orderDirection: desc, {FETCH_BY_BLOCK_NUMBER}){{
     user{{
       id
     }}
@@ -41,7 +41,7 @@ reserves{{
 """
 
 response = requests.post(
-    AAVE_GRAPH_URLS[CHAIN], json={"query": aave_top_account_per_reserve}, timeout=5)
+    AAVE_GRAPH_URLS[CHAIN], json={"query": aave_top_account_per_reserve}, timeout=30)
 
 if response.status_code == 200:
     data = response.json()['data']['pools'][0]['reserves']
