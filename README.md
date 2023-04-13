@@ -11,15 +11,15 @@ These helpers allow you to fetch the health factor of the borrowers and validate
 
 * Python - please follow the [instructions](https://packaging.python.org/en/latest/tutorials/installing-packages/) to install Python.
 
-    install requirements:
-    ```
-    pip install -r requirements.txt
-    ```
+    - install requirements:
+        ```bash
+        pip install -r requirements.txt
+        ```
 
 ## Usage with foundry
 With Foundry installed and being in a Git repository:
 
-```
+```bash
 forge install https://github.com/ChaosLabsInc/chaos-labs-utils
 ```
 
@@ -65,27 +65,37 @@ this function compares the health of the borrowed before and after the execution
 
 ## Usage MakeFile
 Recommended practice add to MakeFile:
-```
+```solidity
 test-name :; python lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_number} && forge test -vvv --match-contract YourPayloadTest
 ```
 
 example for running test and fetch borrowers from the latest block update on the graph:
 ```
-test-name :; python lib/chaos-labs-utils/scripts/fetch-borrowers.py ethereum && forge test -vvv --match-contract AaveEthV3PayloadTest
+test-name :; python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py ethereum && forge test -vvv --match-contract AaveEthV3PayloadTest
 ```
 
 Another option - running the python script lib/chaos-labs-utils/scripts/fetch-borrowers.py before running the test:
-```
-python lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_number}
+```bash
+python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_number}
 ```
 
 ### Script argumansts
 * chain_name - The name of the chain from this supported list: ```[polygon, avalanche, arbitrum, optimism, ethereum]```
 * block_number - this is an optional argument, if not pass the script withh fetch the borrowers from the latest block in the graph.
 
-## Acknowledgments
+## FAQs
 
-### FAQ
+**Q: I got timeout error while running the python scrip**
+
+**A:** This can happen for many reasons; please try to rerun the script.
+
+
+**Q: I got error while running the payload test**
+
+**A:** This can happen because '_testBorrowrsHealth' is trying to fetch data from the node for multiple borrowers - please rerun the test.
 
 
 
+**Q: I got requier message "Health factor changed more than the set tolerance percentage." but didnt changed collateral parameters**
+
+**A:** This should not happen, and we advise you to check if the payload is correct. 
