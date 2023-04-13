@@ -30,7 +30,7 @@ addresses = []
 aave_top_account_per_reserve = f"""  {{pools{{
 reserves{{
   symbol
-  userReserves(first:5, orderBy: currentATokenBalance, orderDirection: desc, {FETCH_BY_BLOCK_NUMBER}){{
+  userReserves(first:10, orderBy: currentATokenBalance, orderDirection: desc, {FETCH_BY_BLOCK_NUMBER}){{
     user{{
       id
     }}
@@ -42,40 +42,43 @@ reserves{{
 
 response = requests.post(
     AAVE_GRAPH_URLS[CHAIN], json={"query": aave_top_account_per_reserve}, timeout=5)
-data = response.json()['data']['pools'][0]['reserves']
-print("finished fetching borrowers")
-for reserve_data in data:
-    for account_data in reserve_data['userReserves']:
-        addresses.append(account_data['user']['id'])
 
-print("before remove duplicates: ", len(addresses))
-addresses = list(dict.fromkeys(addresses))
-print("after remove duplicates: ", len(addresses))
+if response.status_code == 200:
+    data = response.json()['data']['pools'][0]['reserves']
+    print("Finished fetching borrowers")
+    for reserve_data in data:
+        for account_data in reserve_data['userReserves']:
+            addresses.append(account_data['user']['id'])
 
-addresses_code = ""
-for address in addresses:
-    pad_address = "address(" + address[0:2] + \
-        "00" + address[2:len(address)] + "),"
-    addresses_code += pad_address
+    addresses = list(dict.fromkeys(addresses))
 
-with open(BORROWERS_PATH, 'w') as f:
-    template = f"""
-  // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.16;
+    addresses_code = ""
+    for address in addresses:
+        pad_address = "address(" + address[0:2] + \
+            "00" + address[2:len(address)] + "),"
+        addresses_code += pad_address
 
-contract Constants {{
-address[] public arr;
+    with open(BORROWERS_PATH, 'w') as f:
+        template = f"""
+    // SPDX-License-Identifier: MIT
+  pragma solidity ^0.8.16;
 
-function getBorrowers() public returns (address[] memory) {{
-  arr = [
-{addresses_code[0:-1]}
-  ];
-  return arr;
-}}
-}}
+  contract Constants {{
+  address[] public arr;
 
-  """
-    f.write(template)
+  function getBorrowers() public returns (address[] memory) {{
+    arr = [
+  {addresses_code[0:-1]}
+    ];
+    return arr;
+  }}
+  }}
 
-os.system("npx prettier --write src/*")
-print(f"update borrowers in: {BORROWERS_PATH}")
+    """
+        f.write(template)
+
+    os.system("npx prettier --write src/*")
+    print(f"Update borrowers in: {BORROWERS_PATH}")
+
+else:
+    print(f"Failed to fetch data. Status code: {response.status_code}")

@@ -15,10 +15,10 @@ block_number - this is an optional, if not pass the borrowers from the latest bl
 in the solidity test contract:
 
 ```
-    import {TestContract} from 'chaos-labs-utils/TestContract.sol';
+    import {SanityChecks} from 'chaos-labs-utils/SanityChecks.sol';
     ...
 
-    contract XXX is TestContract {
+    contract XXX is SanityChecks {
 
     uint256[] memory healthsBefore = _testBorrowrsHealth(AaveV3{chain}.POOL);
 
