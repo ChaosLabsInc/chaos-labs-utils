@@ -83,6 +83,9 @@ python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_numb
 * chain_name - The name of the chain from this supported list: ```[polygon, avalanche, arbitrum, optimism, ethereum]```
 * block_number - this is an optional argument, if not pass the script withh fetch the borrowers from the latest block in the graph.
 
+## Borrowers Fetch Logic
+...
+
 ## FAQs
 
 **Q: I got timeout error while running the python script ```requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.thegraph.com', port=443): Read timed out.```**
