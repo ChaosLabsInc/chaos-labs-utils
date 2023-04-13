@@ -32,10 +32,10 @@ in the solidity test contract:
 }
 ```
 
-```_testBorrowrsHealth```
+```_testBorrowrsHealth()```
 
 this function get all borrowers health for the given protocol status.
 
-```validateBorrowersHealth```
+```validateBorrowersHealth(healthsBefore, healthsAfter, changeTolerancePercentage)```
 
 this function compares the health of the borrowed before and after the execution for a given tolerance percentage (1_00 present +-1%, for zero tolerance pass 0)
