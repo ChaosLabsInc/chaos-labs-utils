@@ -1,3 +1,5 @@
+# Intro
+
 # How to use 
 
 ## Python script
@@ -41,3 +43,7 @@ this function compares the health of the borrowed before and after the execution
     }
 }
 ```
+
+## MakeFile
+add to MakeFile:
+test-name :; python lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} && forge test -vvv --match-contract XXX_Test
