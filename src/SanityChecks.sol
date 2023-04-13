@@ -31,19 +31,19 @@ contract SanityChecks is Test {
     }
 
     function validateBorrowersHealth(
-        uint256[] memory countBefore,
-        uint256[] memory countAfter,
+        uint256[] memory healthBefore,
+        uint256[] memory healthAfter,
         uint256 changeTolerancePercentage
     ) internal view {
-        for (uint i = 0; i < countBefore.length; i++) {
-            if (countBefore[i] == UINT256_MAX && countAfter[i] == UINT256_MAX) {
+        for (uint i = 0; i < healthBefore.length; i++) {
+            if (healthBefore[i] == UINT256_MAX && healthAfter[i] == UINT256_MAX) {
                 continue;
             }
             require(
-                (countBefore[i] * (100_00 + changeTolerancePercentage) >=
-                    countAfter[i] * 100_00 &&
-                    countBefore[i] * (100_00 - changeTolerancePercentage) <=
-                    countAfter[i] * 100_00),
+                (healthBefore[i] * (100_00 + changeTolerancePercentage) >=
+                    healthAfter[i] * 100_00 &&
+                    healthBefore[i] * (100_00 - changeTolerancePercentage) <=
+                    healthAfter[i] * 100_00),
                 "Health factor chagned more than the set tolerance percentage"
             );
         }
