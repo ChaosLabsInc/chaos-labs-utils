@@ -16,7 +16,6 @@ These helpers allow you to fetch the health factor of the borrowers and validate
         pip install -r requirements.txt
         ```
 
-python3 -m pip install requests
 ## Usage with foundry
 With Foundry installed and being in a Git repository:
 
