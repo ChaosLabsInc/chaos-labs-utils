@@ -8,7 +8,7 @@ import {IPool} from "aave-address-book/AaveV3.sol";
 
 import {AaveV3Ethereum, AaveV3EthereumAssets} from "aave-address-book/AaveV3Ethereum.sol";
 
-contract TestContract is Test {
+contract SanityChecks is Test {
     function _testBorrowrsHealth(
         IPool pool
     ) internal returns (uint256[] memory) {
