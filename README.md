@@ -19,15 +19,16 @@ in the solidity test contract:
 
     contract XXXTest is SanityChecks {
 
-    uint256[] memory healthsBefore = _testBorrowrsHealth(AaveV3{chain}.POOL);
+      function testPayload() public {
+        uint256[] memory healthsBefore = _testBorrowrsHealth(AaveV3{chain}.POOL);
 
-    // 2. execute payload
-    _executePayload(address(proposalPayload));
+        // 2. execute payload
+        _executePayload(address(proposalPayload));
 
-    uint256[] memory healthsAfter = _testBorrowrsHealth(AaveV3{chain}.POOL);
+        uint256[] memory healthsAfter = _testBorrowrsHealth(AaveV3{chain}.POOL);
 
-    validateBorrowersHealth(healthsBefore, healthsAfter, 1_00);
-
+        validateBorrowersHealth(healthsBefore, healthsAfter, 1_00);
+    }
 }
 ```
 
