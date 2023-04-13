@@ -1,0 +1,10 @@
+# build and cache
+cache/
+out/
+
+# general
+.env
+
+# editors
+.idea
+.vscode

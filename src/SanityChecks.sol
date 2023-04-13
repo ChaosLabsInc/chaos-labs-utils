@@ -35,15 +35,16 @@ contract SanityChecks is Test {
         uint256[] memory healthAfter,
         uint256 changeTolerancePercentage
     ) internal view {
+        unit256 factor = 100_00;
         for (uint i = 0; i < healthBefore.length; i++) {
             if (healthBefore[i] == UINT256_MAX && healthAfter[i] == UINT256_MAX) {
                 continue;
             }
             require(
-                (healthBefore[i] * (100_00 + changeTolerancePercentage) >=
-                    healthAfter[i] * 100_00 &&
-                    healthBefore[i] * (100_00 - changeTolerancePercentage) <=
-                    healthAfter[i] * 100_00),
+                (healthBefore[i] * (factor + changeTolerancePercentage) >=
+                    healthAfter[i] * factor &&
+                    healthBefore[i] * (factor - changeTolerancePercentage) <=
+                    healthAfter[i] * factor),
                 "Health factor chagned more than the set tolerance percentage"
             );
         }
