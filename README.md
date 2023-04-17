@@ -66,7 +66,7 @@ this function compares the health of the borrowed before and after the execution
 ## Usage MakeFile
 Recommended practice add to MakeFile:
 ```solidity
-test-name :; python lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_number} && forge test -vvv --match-contract YourPayloadTest
+test-name :; python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_number} && forge test -vvv --match-contract YourPayloadTest
 ```
 
 example for running test and fetch borrowers from the latest block update on the graph:
