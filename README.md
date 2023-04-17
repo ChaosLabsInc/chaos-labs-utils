@@ -20,7 +20,7 @@ These helpers allow you to fetch the health factor of the borrowers and validate
 With Foundry installed and being in a Git repository:
 
 ```bash
-forge install https://github.com/ChaosLabsInc/chaos-labs-utils
+forge install https://github.com/ChaosLabsInc/chaos-labs-utils —no-commit
 ```
 
 ## Usage with payload test contract
