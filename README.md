@@ -84,7 +84,7 @@ python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_numb
 * block_number - this is an optional argument, if not pass the script withh fetch the borrowers from the latest block in the graph.
 
 ## Borrowers Fetch Logic
-...
+For each reserve/token of the chain, we fetch the top 10 borrowers' supply.
 
 ## FAQs
 
