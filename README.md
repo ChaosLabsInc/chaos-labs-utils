@@ -84,7 +84,7 @@ python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name} {block_numb
 * block_number - this is an optional argument; if nothing is passed, the script fetches the borrowers from the latest block in the graph.
 
 ## Borrowers Fetch Logic
-For each reserve(token) of the chain, we fetch the top 10 suppliers that borrowed from at least one reserver - this should assure us that their health factor is less than infinite.
+For each reserve(token) of the chain, we fetch the top 5 suppliers that borrowed from at least one reserver - this should assure us that their health factor is less than infinite.
 
 ## FAQs
 
