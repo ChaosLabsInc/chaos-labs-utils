@@ -11,7 +11,7 @@ FETCH_BY_BLOCK_NUMBER = ""
 
 try:
     BLOCK_NUMBER = sys.argv[2]
-    FETCH_BY_BLOCK_NUMBER = f", where: {{_change_block: {{ number_gte: {BLOCK_NUMBER}}}}}"
+    FETCH_BY_BLOCK_NUMBER = f"(block: {{number: {BLOCK_NUMBER}}})"
 except:
     pass
 
@@ -28,9 +28,9 @@ print(f"Start fetching borrowers from CHAIN {CHAIN}")
 addresses = []
 
 aave_top_account_per_reserve = f"""  {{
-reserves{{
+reserves{FETCH_BY_BLOCK_NUMBER}{{
   symbol
-  userReserves(first:10, orderBy: currentATokenBalance, orderDirection: desc, where: {{user_:{{borrowedReservesCount_gt:0}}}}, {FETCH_BY_BLOCK_NUMBER}){{
+  userReserves(first:10, orderBy: currentATokenBalance, orderDirection: desc, where: {{user_:{{borrowedReservesCount_gt:0}}}}){{
     user{{
       id
     }}
