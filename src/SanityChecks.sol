@@ -15,7 +15,7 @@ contract SanityChecks is Test {
         address[] memory borrowers = new Constants().getBorrowers();
         uint256[] memory healthFactorArr = new uint256[](borrowers.length);
 
-        console.log("Start fetch healt factor for the number of borrowers: ", borrowers.length);
+        console.log("Start fetch health factor for the number of borrowers: ", borrowers.length);
         for (uint i = 0; i < borrowers.length; i++) {
             (, , , , , uint256 healthFactor) = pool.getUserAccountData(
                 borrowers[i]
@@ -30,7 +30,7 @@ contract SanityChecks is Test {
         uint256[] memory healthAfter,
         uint256 changeTolerancePercentage
     ) internal view {
-        unit256 factor = 100_00;
+        uint256 factor = 100_00;
         for (uint i = 0; i < healthBefore.length; i++) {
             if (healthBefore[i] == UINT256_MAX && healthAfter[i] == UINT256_MAX) {
                 continue;
@@ -42,7 +42,7 @@ contract SanityChecks is Test {
                     healthAfter[i] * factor),
                 "Health factor changed more than the set tolerance percentage"
             );
-            console.log("Finished validating health factor for the number of borrowers: ",healthBefore.length);
+        console.log("Finished validating health factor for the number of borrowers: ",healthBefore.length);
         }
     }
 }

@@ -1,10 +1,10 @@
 # Chaos Labs Utils
 
-This package contains a contract which allow you to extand testing coverage within the aave protocol in foundry.
+This package contains a contract which enables extanded testing coverage within the aave protocol using foundry.
 
 ## Getting Started
 
-These helpers allow you to fetch the health factor of the borrowers and validate the difference before and after the payload was executed. 
+These tests allow you to fetch the health factor of the aave borrowers to validate the differences before and after the payload execution. 
 
 
 ### Prerequisites
@@ -61,7 +61,7 @@ this function return all borrowers health for the given protocol status.
 
 ```validateBorrowersHealth(healthsBefore, healthsAfter, changeTolerancePercentage)```
 
-this function compares the health of the borrowed before and after the execution for a given tolerance percentage (1_00 present +-1%, for zero tolerance pass 0)
+this function compares the health of the borrowers before and after the execution for a given tolerance percentage (1_00 represents +-1%, for zero tolerance pass 0)
 
 ## Usage MakeFile
 Recommended practice add to MakeFile:
@@ -71,7 +71,7 @@ test-name :; python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py {chain_name
 
 example for running test and fetch borrowers from the latest block update on the graph:
 ```
-test-name :; python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py ethereum && forge test -vvv --match-contract AaveEthV3PayloadTest
+test-name :; python3 lib/chaos-labs-utils/scripts/fetch-borrowers.py ethereum 16925078 && forge test -vvv --match-contract AaveEthV3PayloadTest
 ```
 
 Another option - running the python script lib/chaos-labs-utils/scripts/fetch-borrowers.py before running the test:
@@ -98,6 +98,6 @@ For each reserve/token of the chain, we fetch the top 20 borrowers' supply.
 **A:**  First iteration can fail on latency to archive node to fetch all the balances for the test, rerunning will help.
 
 
-**Q: I got requier message "Health factor changed more than the set tolerance percentage." but payload didn't changed collateral parameters**
+**Q: I got require message "Health factor changed more than the set tolerance percentage." but payload didn't changed collateral parameters**
 
 **A:** This should not happen, we advise you to check if the payload is correct. 
