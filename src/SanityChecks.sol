@@ -42,7 +42,7 @@ contract SanityChecks is Test {
                     healthAfter[i] * factor),
                 "Health factor changed more than the set tolerance percentage"
             );
-        console.log("Finished validating health factor for the number of borrowers: ",healthBefore.length);
         }
+        console.log("Finished validating health factor for the number of borrowers: ",healthBefore.length);
     }
 }
