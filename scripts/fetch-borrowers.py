@@ -5,7 +5,7 @@ import requests
 PATH, _ = os.path.split(os.path.realpath(__file__))
 
 BORROWERS_PATH = f"{PATH}/../src/borrowers.sol"
-TIMEOUT = 60
+TIMEOUT = 120
 CHAIN = str(sys.argv[1])
 FETCH_BY_BLOCK_NUMBER = ""
 
