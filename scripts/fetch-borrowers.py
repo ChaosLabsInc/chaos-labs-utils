@@ -27,15 +27,14 @@ print(f"Start fetching borrowers from CHAIN {CHAIN}")
 
 addresses = []
 
-aave_top_account_per_reserve = f"""  {{pools{{
+aave_top_account_per_reserve = f"""  {{
 reserves{{
   symbol
-  userReserves(first:20, orderBy: currentATokenBalance, orderDirection: desc, {FETCH_BY_BLOCK_NUMBER}){{
+  userReserves(first:10, orderBy: currentATokenBalance, orderDirection: desc, where: {{user_:{{borrowedReservesCount_gt:0}}}}, {FETCH_BY_BLOCK_NUMBER}){{
     user{{
       id
     }}
   }}
-}}
 }}
 }}
 """
@@ -44,7 +43,7 @@ response = requests.post(
     AAVE_GRAPH_URLS[CHAIN], json={"query": aave_top_account_per_reserve}, timeout=TIMEOUT)
 
 if response.status_code == 200:
-    data = response.json()['data']['pools'][0]['reserves']
+    data = response.json()['data']['reserves']
     print("Finished fetching borrowers")
     for reserve_data in data:
         for account_data in reserve_data['userReserves']:
