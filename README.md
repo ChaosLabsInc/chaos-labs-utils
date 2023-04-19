@@ -88,7 +88,7 @@ For each reserve(token) of the chain, we fetch the top 5 suppliers that borrowed
 
 ## FAQs
 
-**Q: I got a timeout error while running the Python script ```requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.thegraph.com', port=443): Read timed out.```**
+**Q: I got a timeout error while running the Python script ```requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.thegraph.com', port=443): Read timed out``` or ```Failed to fetch data. Status code: 524```.**
 
 **A:** This can happen for many reasons; please try to rerun the script.
 
