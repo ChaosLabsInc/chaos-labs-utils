@@ -1,6 +1,6 @@
 # Chaos Labs Utils
 
-This package contains a contract that enables extended testing coverage within the Aave protocol using Foundry.
+This package contains a contract and utility scripts that enables extended testing coverage within the Aave protocol using Foundry.
 
 ## Getting Started
 
