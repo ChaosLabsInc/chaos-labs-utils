@@ -41,7 +41,7 @@ YourPayloadTest.Sol:
       }
   
       function testPayload() public {
-        uint256[] memory healthsBefore = _testBorrowrsHealth(AaveV3{chain}.POOL);
+        uint256[] memory healthsBefore = _testBorrowrsHealth(AaveV3{chain}.POOL); // e.g - AaveV3Optimism.POOL
 
         // 2. Execute payload
         _executePayload(address(new YourPayload()));
