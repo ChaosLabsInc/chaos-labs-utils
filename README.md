@@ -1,6 +1,8 @@
 # Chaos Labs Utils
 
 This package contains a contract and utility scripts that enables extended testing coverage within the Aave protocol using Foundry.
+The main usecase for this util is to provide functionality to support addtional layer of safeguards for Aave governance payloads. Scenaris where a configuration change can mistakely reduce a token's LT and cause cascading liquidations is possible and extremely risky.
+To address such cases, the sanity tests that can be built with this util will help the payload writer to make sure the changes included are as designed.
 
 ## Getting Started
 
@@ -25,6 +27,9 @@ forge install https://github.com/ChaosLabsInc/chaos-labs-utils —no-commit
 ## Usage with payload test contract
 
 ### Usage example 
+
+In this example we will use `_testBorrowrsHealth` and `validateBorrowersHealth` functions to verify the payload has not unexpectedly affected the health of positions on Aave. It's useful to ensure we're not mistakely altering values we didn't intend, like reudcing some token's LT value. 
+
 YourPayloadTest.Sol:
 ```
     import {SanityChecks} from 'chaos-labs-utils/SanityChecks.sol';
