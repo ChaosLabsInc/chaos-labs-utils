@@ -90,7 +90,7 @@ For each reserve(token) of the chain, we fetch the top 5 suppliers that borrowed
 
 **Q: I got a timeout error while running the Python script ```requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.thegraph.com', port=443): Read timed out``` or ```Failed to fetch data. Status code: 524```.**
 
-**A:** This can happen for many reasons; please try to rerun the script.
+**A:** This can happen for many reasons; Mosty latency with fetching data from the graph. Rerunning the script can usually resolve it.
 
 
 **Q: I got an error while running the payload test**
@@ -100,4 +100,4 @@ For each reserve(token) of the chain, we fetch the top 5 suppliers that borrowed
 
 **Q: I got the required message "Health factor changed more than the set tolerance percentage." but the payload didn't change collateral parameters**
 
-**A:** This should not happen; we advise you to check if the payload is correct. 
+**A:** This should not happen; we advise you to check if the payload is correct.
